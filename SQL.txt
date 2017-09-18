@@ -1,0 +1,28 @@
+SELECT name FROM country WHERE population > 60000000
+SELECT name FROM country WHERE population > 60000000 ORDER by name ASC
+SELECT name,population FROM country ORDER by population DESC
+SELECT name FROM country ORDER by area ASC FETCH FIRST 10 ROWS ONLY
+SELECT name,area FROM country ORDER by area ASC OFFSET 10 ROWS FETCH FIRST 10 ROWS ONLY
+
+
+SELECT c.name FROM country c JOIN encompasses e ON c.code = e.country WHERE e.continent = 'Europe'
+SELECT DISTINCT c.name FROM country c JOIN encompasses e ON c.code = e.country WHERE e.percentage < 100
+SELECT c.name FROM country c JOIN encompasses e ON c.code = e.country WHERE e.continent = 'America' AND c.population/c.area <10
+
+
+
+
+'NE MARCHE PAS*'
+SELECT c.name,c.capital 
+FROM(country c JOIN emcompasses e ON c.code = e.country)JOIN city v ON c.capital = v.name AND c.code = v.country
+WHERE e.continent = 'Europe' AND v.latitude > 60
+
+SELECT country1,length FROM borders WHERE country2='F' ORDER BY length DESC FETCH FIRST 10 ROWS ONLY
+
+AND country2,length FROM borders WHERE country1='F' ORDER BY length DESC FETCH FIRST 10 ROWS ONLY 
+
+
+SELECT name,COUNT(country)FROM language GROUP BY name ORDER BY COUNT(country) DESC
+SELECT name,COUNT(country)FROM language GROUP BY name HAVING COUNT(country) = 6 
+SELECT c.name,l.name FROM country c JOIN language l ON c.code = l.country WHERE l.name='Serbian' OR l.name='Turkish' ORDER BY l.name
+
